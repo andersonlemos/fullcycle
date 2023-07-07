@@ -7,8 +7,3 @@ FROM scratch AS stage
 WORKDIR /root/
 COPY  --from=builder /out/build ./
 ENTRYPOINT ["./build"]
-
-
-
-
-
