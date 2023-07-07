@@ -1,4 +1,4 @@
-all: build push
+all: clean build push run
 
 .PHONY: build
 build:
@@ -7,5 +7,11 @@ build:
 .PHONY: push
 push:
 	docker push alemos/fullcycle:latest
+
+.PHONY: clean
 clean:
-	docker system prune -a
+	docker rmi alemos/fullcycle:latest &>/dev/null
+
+.PHONY: run
+run:
+	docker run --rm -it alemos/fullcycle:latest
