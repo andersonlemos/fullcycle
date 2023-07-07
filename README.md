@@ -11,6 +11,7 @@ Containerized golang aplication, when initialize shows "Fullcycle Rocks!!" messa
 |docker|24.0.2|
 
 **NOTE:** *The project was written in golang and using asdf package manager, so you will need to [install](https://github.com/asdf-vm/asdf).*
+
 **NOTE:** *If you want to use automated build with Docker, so you need to [install](https://docs.docker.com/get-docker/) on your system.*
 
 ## Bulding the application
