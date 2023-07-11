@@ -6,13 +6,13 @@ const express = require('express')
 const path = require('path')
 const app = express()
 const mysql = require('mysql2')
-const port = process.env.PORT || 3000
+const port = 3000
 
 const config = {
-  host: process.env.HOST,
-  user: process.env.DBUSER,
-  password: process.env.DBPWD,
-  database: process.env.DBNAME
+  host: 'db',
+  user: 'root',
+  password: 'root',
+  database: 'nodedb'
 }
 const connection = mysql.createConnection(config)
 
@@ -48,6 +48,6 @@ app.get('/', function (req, res) {
   })
 })
 
-app.listen(3000, () => {
+app.listen(port, () => {
   console.log(`Application running on http://localhost:${port}`)
 })
