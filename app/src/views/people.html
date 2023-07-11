@@ -1,0 +1,11 @@
+<%- include('header.html') -%>
+
+<h1>FullCycle Rocks!!</h1>
+<h2>Listagem</h2>
+<ul id="people">
+  <% people.forEach(function(item){ %>
+    <li><%= item.name %></li>
+  <% }) %>
+</ul>
+
+<%- include('footer.html') -%>
