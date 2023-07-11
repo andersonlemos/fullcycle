@@ -1,0 +1,51 @@
+services:
+    db:
+        image: mysql:debian
+        container_name: db
+        hostname: db
+        command: --innodb-use-native-aio=0
+        tty: true
+        restart: always
+        environment:
+            - MYSQL_DATABASE=nodedb
+            - MYSQL_ROOT_PASSWORD=root
+        volumes:
+            - ./db/mysql:/var/lib/mysql
+            - ./db/scripts/init.sql:/docker-entrypoint-initdb.d/init.sql
+        ports:
+            - "3306:3306"
+        networks:
+            - node-app
+    app:
+        image: node:lts
+        command: npm start
+        container_name: app
+        hostname: app
+        depends_on:
+            - db
+        build:
+            context: .
+        tty: true
+        restart: always
+        volumes:
+            - ./app:/usr/src/app
+        ports:
+            - "3000:3000"
+        networks:
+            - node-app
+    nginx:
+        image: nginx:latest
+        container_name: proxy
+        hostname: proxy
+        tty: true
+        depends_on:
+            - db
+        volumes:
+            - ./nginx/conf.d:/etc/nginx/conf.d
+        ports:
+            - "8080:80"
+        networks:
+            - node-app
+networks:
+    node-app:
+        driver: bridge
