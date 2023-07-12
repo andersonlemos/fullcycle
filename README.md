@@ -5,7 +5,7 @@ Containerized Nodejs aplication, when initialize shows "Fullcycle Rocks!!" and a
 ## Dependencies
 
 |library|version|
-|---|---|---|
+|---|---|
 |docker|24.0.2|
 |docker compose| 2.18.1|
 **NOTE:** *The project was written in nodejs and using asdf package manager, so you will need to [install](https://github.com/asdf-vm/asdf).*
