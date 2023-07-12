@@ -9,8 +9,6 @@ RUN apt-get update \
 WORKDIR  /usr/src/app
 
 COPY ./app .
-RUN npm update npm \
-    npm install
 
 EXPOSE 3000
 
