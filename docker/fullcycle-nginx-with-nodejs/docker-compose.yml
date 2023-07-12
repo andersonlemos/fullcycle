@@ -18,7 +18,7 @@ services:
             - node-app
     app:
         image: base
-        command: npm start
+        command: dockerize -wait tcp://db:3306 -timeout 10s npm start
         container_name: app
         hostname: app
         depends_on:
