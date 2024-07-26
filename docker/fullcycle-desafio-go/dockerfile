@@ -1,9 +1,17 @@
-FROM golang:alpine AS builder
-WORKDIR /src
-COPY ./src /src/
-RUN go build -o /out/build .
+FROM golang:alpine3.20 AS builder
 
-FROM scratch AS stage
-WORKDIR /root/
-COPY  --from=builder /out/build ./
-ENTRYPOINT ["./build"]
+ENV GO111MODULE=on \
+    CGO_ENABLED=1
+
+WORKDIR /src
+
+COPY ./src /src
+RUN go mod download && go mod verify
+
+COPY . .
+
+RUN go build -v -o /out/build .
+
+FROM scratch
+COPY --chown=0:0 --from=builder /out/build ./
+ENTRYPOINT [ "./build" ]
